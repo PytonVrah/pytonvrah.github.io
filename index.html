@@ -242,6 +242,16 @@
         .btn-remove { background-color: var(--remove-btn); border-color: var(--remove-btn); }
         .btn-keep { background-color: var(--keep-btn); border-color: var(--keep-btn); }
 
+        .key-hint {
+            position: absolute;
+            bottom: -25px;
+            font-size: 0.6rem;
+            color: #888;
+            font-family: 'Press Start 2P', cursive;
+            width: 100%;
+            text-align: center;
+        }
+
         /* --- BOSS BAR --- */
         .boss-section {
             width: 90%; max-width: 600px; margin-top: 30px; display: none;
@@ -590,13 +600,12 @@
             { q: "Vysvetlite pojem 'Stereotyp'.", a: "Zjednodušený obraz skupiny ľudí, zveličujúci vlastnosti." },
             { q: "Čo je to 'Agenda Setting'?", a: "Médiá určujú, o čom máme premýšľať (nastoľovanie tém)." },
             { q: "Denotácia vs. Konotácia?", a: "Denotácia = doslovný význam. Konotácia = pridaný, emočný význam." },
-            // NOVÉ OTÁZKY (TEÓRIA MÉDIÍ)
             { q: "Správy v souls hrách radíme do sprostredkovanej komunikácie:", a: "Áno (pravda)" },
-            { q: "Čo nepatrí do neverbálnej komunikácie?", a: "Dialóg" },
+            { q: "Do neverbálnej komunikácie NEPATRÍ:", a: "Dialóg" },
             { q: "Aké sú znaky procesu masovej komunikácie?", a: "Adresnosť, asymetrickosť, veľký rozsah, štandardizovanosť" },
             { q: "Ako sa označujú nové verzie známych Disney rozprávok?", a: "Remake" },
             { q: "Ľudia na Comic con-e sú:", a: "Dav" },
-            { q: "Definuj mediálnu gramotnosť.", a: "Schopnosť hľadať, dešifrovať a interpretovať mediálny obsah." },
+            { q: "Definuj mediálnu gramotnosť.", a: "Schopnosť hľadať, dešifrovať a interpretovať mediálny obsah" },
             { q: "Zohľadňuje prenosový model komunikácie spätnú väzbu?", a: "Nie (False)" },
             { q: "Je denotácia priamy (doslovný) význam znaku?", a: "Áno (True)" },
             { q: "Ak hráč ignoruje pravidlá a robí chaos, produkt číta cez:", a: "Opozičný kód" },
@@ -604,13 +613,19 @@
             { q: "Postava stelesňujúca emócie a inštinkty (protiklad hrdinu):", a: "Tieň" },
             { q: "Aké podmienky musí spĺňať znak?", a: "Materiálny, odkazuje na niečo iné, uznaný skupinou." },
             { q: "Je diskurz len usporiadaný znakový systém na prenos info?", a: "Nie (False) - je to širší kontext komunikácie." },
-            { q: "Srdiečka v hre sú:", a: "Ideogramy" },
+            { q: "Aké modely komunikácie máme podľa McQuaila?", a: "Prenosový, Propagačný, Prepájací, Rituálový" },
+            { q: "Srdiečka v hre sú príkladom:", a: "Ideogramov" },
             { q: "Vymenujte aspoň 5 spravodajských hodnôt (News values).", a: "Blízkosť, novosť, negativita, prekvapenie, personalizácia..." },
             { q: "Čo skúma Syntaktika?", a: "Vzťahy medzi znakmi, vetnú skladbu." },
             { q: "Čo skúma Sémantika?", a: "Vzťah medzi znakom a významom." },
             { q: "Čo skúma Pragmatika?", a: "Vzťah medzi znakmi a používateľmi (kontext)." },
             { q: "Vymenujte 6 komunikačných kanálov.", a: "Auditívny, vizuálny, hmatový, čuchový, tepelný, chuťový." },
-            { q: "Vymenujte príklady humanitných vied.", a: "Filozofia, história, estetika, pedagogika, jazykoveda..." }
+            { q: "Vymenujte príklady humanitných vied.", a: "Filozofia, história, estetika, pedagogika, jazykoveda..." },
+            { q: "Čo je to 'Komodifikácia informácie'?", a: "Informácia sa stáva tovarom určeným na predaj a zisk." },
+            { q: "Vysvetlite pojem 'McDonalidizácia'.", a: "Uplatňovanie princípov efektivity a kalkulovateľnosti v spoločnosti." },
+            { q: "Čo je to 'Reprezentácia' v médiách?", a: "Spôsob, akým médiá zobrazujú realitu (nie je to zrkadlo, ale konštrukcia)." },
+            { q: "Kto neuvádzal archetypy? (Jung vs iní)", a: "Archetypy sú od Junga (ak otázka cieli na iných, tak napr. Freud ich nemal)." },
+            { q: "Ako vieme kategorizovať publikum?", a: "Podľa miesta (lokálne/národné), podľa média, podľa sociodemografie." }
         ];
 
         // ================= GAME LOGIC =================
