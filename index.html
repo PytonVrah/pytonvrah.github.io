@@ -1,27 +1,453 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Filip Kuttner | Portfólio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0B0B0B">
+<title>Filip Kuttner | Portfólio</title>
+<meta name="description" content="Portfólio Filipa Kuttnera: game design, 2D grafika a komunitný obsah.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0B0B0B; --panel:#121212; --line:rgba(236,234,228,.16);
+  --ink:#ECEAE4; --soft:#C9C6BF; --muted:#8F8D88; --on-ink:#0B0B0B;
+  --display:"UnifrakturCook","Old English Text MT",Georgia,serif;
+  --body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+main,footer{position:relative;z-index:1}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;-webkit-appearance:none;appearance:none}
+a:focus-visible,button:focus-visible,.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0;line-height:1.02}
+h1,h2{filter:url(#ink)}
+h2{filter:url(#ink2)}
+p{margin:0 0 1em}
+
+header.top{position:fixed;top:0;left:0;right:0;z-index:20;transition:background .25s,border-color .25s;background:rgba(11,11,11,.7);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 28px;min-height:54px}
+.logo{font-family:var(--display);font-weight:700;font-size:1.4rem;text-decoration:none}
+nav{display:flex;gap:24px;flex-wrap:wrap;font-size:.9rem}
+nav button{color:var(--muted)}
+nav button:hover{color:var(--ink)}
+nav button[aria-current]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--muted);text-underline-offset:7px}
+.on-light header.top{background:transparent;border-bottom-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+.on-light .logo{color:#0B0B0B}
+.on-light nav button{color:#55544f}
+.on-light nav button:hover{color:#0B0B0B}
+section,.hero{scroll-margin-top:60px}
+
+.hero{position:relative;height:230vh;background:var(--bg)}
+.stage{--p:0;--s:.05;position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#F4F3EF;color:#0B0B0B;
+  display:grid;place-items:center;text-align:center}
+.stage .content{position:relative;z-index:2;padding:0 24px 14vh;opacity:calc(1 - var(--p)*2.4);transform:translateY(calc(var(--p)*-50px))}
+.hole{position:absolute;left:50%;top:86%;z-index:1;border-radius:50%;pointer-events:none;will-change:transform;
+  background:radial-gradient(circle closest-side,#0B0B0B 0,#0B0B0B 88%,rgba(11,11,11,0) 100%);
+  transform:translate(-50%,-50%) scale(var(--s))}
+.cue{position:absolute;left:50%;top:calc(86% - 84px);transform:translateX(-50%);z-index:2;font-size:.8rem;letter-spacing:.04em;color:#6b6a66;opacity:calc(1 - var(--p)*8)}
+.hero h1{font-size:clamp(3.8rem,17vw,10.5rem);letter-spacing:.01em;line-height:.95}
+.cap{font-size:.8rem;color:#6b6a66;letter-spacing:.06em;margin:30px 0 22px}
+.hero .lead{font-size:clamp(1.2rem,2.6vw,1.65rem);font-weight:300;color:#3a3a38;max-width:30ch;margin:0 auto;line-height:1.35}
+.cta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 26px;margin-top:38px}
+.btn{display:inline-block;padding:13px 26px;border-radius:999px;background:var(--ink);color:var(--on-ink);text-decoration:none;font-weight:600}
+.btn:hover{opacity:.85}
+.textlink{color:var(--ink);text-decoration:underline;text-decoration-color:var(--muted);text-underline-offset:5px;font-weight:500}
+.textlink:hover{text-decoration-color:var(--ink)}
+.stage .btn{background:#0B0B0B;color:#F4F3EF}
+.stage .textlink{color:#0B0B0B;text-decoration-color:#8a8983}
+.stage a:focus-visible,.stage button:focus-visible{outline-color:#0B0B0B}
+
+section{padding:100px 0;border-top:1px solid var(--line);min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+section .wrap{width:100%}
+.head{text-align:center;margin-bottom:56px}
+.head h2{font-size:clamp(2.6rem,7vw,4.8rem)}
+.head p{color:var(--muted);font-size:1.1rem;max-width:46ch;margin:18px auto 0}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.slot{grid-column:span 2;min-height:220px;padding:28px;border:1.5px dashed var(--line);border-radius:20px}
+.slot.a,.slot.d{grid-column:span 4}
+.slot h3{font-size:1.7rem;margin-bottom:10px}
+.slot p{color:var(--muted);font-size:.97rem;margin:0}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:22px}
+.thumb{aspect-ratio:16/10;background:#050505;display:grid;place-items:center;color:var(--muted);font-size:.85rem;border-bottom:1px solid var(--line)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.08);transition:filter .3s}
+.card:hover .thumb img{filter:none}
+.card .body{padding:28px}
+.card h3{font-size:2.3rem;margin-bottom:6px}
+.role{color:var(--muted);font-size:.95rem;margin-bottom:16px}
+.result{display:flex;gap:10px;font-weight:600;margin-bottom:14px}
+.result::before{content:"";flex:none;width:8px;height:8px;margin-top:.55em;background:var(--ink);transform:rotate(45deg)}
+.card .body p:not(.role):not(.result){color:var(--soft);font-size:.97rem}
+.more{text-align:center;margin-top:36px;color:var(--muted)}
+
+.about{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:start}
+.about h2{font-size:clamp(2.6rem,6vw,4rem);margin-bottom:24px}
+.about p{color:var(--soft)}
+.about h3{font-size:1.8rem;margin-bottom:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
+.chips li{border:1px solid var(--line);border-radius:999px;padding:6px 15px;font-size:.9rem}
+
+.contact{text-align:center}
+.contact a.big{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,5.5vw,3.2rem);overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:10px;text-decoration-thickness:2px}
+.contact ul{list-style:none;padding:0;margin:36px 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px 32px;color:var(--muted)}
+footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+
+.card.feature{grid-column:1/-1;display:grid;grid-template-columns:5fr 6fr}
+.feature .thumb{aspect-ratio:auto;min-height:280px;border-bottom:0;border-right:1px solid var(--line)}
+.games{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+.games li{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:10px;font-size:.95rem;color:var(--soft)}
+.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-radius:14px}
+.track::-webkit-scrollbar{display:none}
+.poster{flex:0 0 clamp(200px,26vw,280px);scroll-snap-align:start;margin:0}
+.pimg{aspect-ratio:1/1.414;background:#050505;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:grid;place-items:center;color:var(--muted);font-size:.85rem}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.08);transition:filter .3s}
+.poster:hover .pimg img{filter:none}
+.poster figcaption{margin-top:10px;color:var(--muted);font-size:.9rem}
+.ctrl{display:flex;justify-content:center;gap:12px;margin-top:28px}
+.arrow{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--panel);font-size:1.6rem;line-height:1;display:grid;place-items:center}
+.arrow:hover{border-color:var(--ink)}
+.arrow:disabled{opacity:.3;cursor:default}
+@media (max-width:760px){
+  .bento{grid-template-columns:1fr}
+  .slot,.slot.a,.slot.d{grid-column:auto;min-height:0}
+  .about{grid-template-columns:1fr;gap:36px}
+  .card.feature{grid-template-columns:1fr}
+  .feature .thumb{aspect-ratio:16/10;min-height:0;border-right:0;border-bottom:1px solid var(--line)}
+  section{padding:68px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}.thumb img{transition:none}
+  .hero{height:auto}.stage{position:relative;height:auto;padding:120px 0 100px}.stage .content{padding:0 24px;opacity:1;transform:none}
+  .hole,.cue{display:none}
+}
+</style>
 </head>
-<body style="font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
+<body>
+<script>document.body.classList.add('on-light')</script>
 
-  <h1>Filip Kuttner</h1>
-  <p>Game designer a 2D artist so záujmom o hernú komunitu a marketing.</p>
-  <p><a href="mailto:kuttner.filip1@gmail.com">kuttner.filip1@gmail.com</a> |
-     <a href="https://pytonvrah.itch.io">itch.io</a></p>
+<!-- melted ink edges for headings -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="ink" x="-5%" y="-15%" width="110%" height="130%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="4" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="10" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feGaussianBlur in="d" stdDeviation="2.6" result="b"/>
+    <feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 22 -10"/>
+  </filter>
+  <filter id="ink2" x="-5%" y="-20%" width="110%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feGaussianBlur in="d" stdDeviation="1.1" result="b"/>
+    <feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 18 -8"/>
+  </filter>
+</svg>
 
-  <h2>Community content: Way of the Hunter</h2>
-  <p>Tu budú tvoje vzorové príspevky, video a Discord oznam.</p>
+<header class="top">
+  <div class="wrap">
+    <button type="button" class="logo" data-go="top">Filip Kuttner</button>
+    <nav aria-label="Hlavná navigácia">
+      <button type="button" data-go="community">Community</button>
+      <button type="button" data-go="projekty">Projekty</button>
+      <button type="button" data-go="plagaty">Plagáty</button>
+      <button type="button" data-go="o-mne">O mne</button>
+      <button type="button" data-go="kontakt">Kontakt</button>
+    </nav>
+  </div>
+</header>
 
-  <h2>Projekty</h2>
-  <h3>Cherry Tower</h3>
-  <p>Tvoja rola, čo si robil a výsledok.</p>
-  <!-- <img src="images/cherry-tower.png" alt="Cherry Tower" style="max-width: 100%;"> -->
+<main id="top">
 
-  <h2>O mne</h2>
-  <p>3 – 4 vety o sebe.</p>
+<div class="hero">
+  <div class="stage">
+    <div class="content">
+      <h1>Filip<br>Kuttner</h1>
+      <p class="cap">Game design, 2D grafika a komunita</p>
+      <p class="lead">Navrhujem a kreslím hry a rád ich predstavujem ľuďom, ktorí ich budú hrať.</p>
+      <div class="cta">
+        <button type="button" class="btn" data-go="community">Ukážka pre Way of the Hunter</button>
+        <button type="button" class="textlink" data-go="projekty">Moje projekty</button>
+      </div>
+    </div>
+    <span class="cue" aria-hidden="true">Posuň sa nižšie</span>
+    <div class="hole" aria-hidden="true"></div>
+  </div>
+</div>
 
+<section id="community">
+  <div class="wrap">
+    <div class="head">
+      <h2>Komunita a obsah pre Way of the Hunter</h2>
+      <p>Ukážky toho, ako by som s hráčmi komunikoval a čo by som pre nich pripravoval.</p>
+    </div>
+    <!-- TODO: Každý slot nahraď vlastným obsahom. Obrázok: <img src="images/nazov.png" alt="popis">
+         Video: YouTube embed (Share → Embed). Potom odstráň text "Sem príde…". -->
+    <div class="bento">
+      <div class="slot a">
+        <h3>Príspevky na sociálne siete</h3>
+        <p>Sem príde 3 – 5 vzorových príspevkov: oznam o update, otázka pre komunitu, spotlight na hráča.</p>
+      </div>
+      <div class="slot b">
+        <h3>Krátke video</h3>
+        <p>Sem príde 15 – 30 sekundový reel alebo trailer edit.</p>
+      </div>
+      <div class="slot c">
+        <h3>Discord oznam</h3>
+        <p>Sem príde vzorový oznam, napríklad patch notes alebo komunitný event.</p>
+      </div>
+      <div class="slot d">
+        <h3>Content kalendár na 2 týždne</h3>
+        <p>Sem príde tabuľka alebo obrázok s plánom príspevkov.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projekty">
+  <div class="wrap">
+    <div class="head">
+      <h2>Projekty</h2>
+      <p>Výber vecí, na ktorých som pracoval, s mojou rolou a výsledkom.</p>
+    </div>
+    <div class="grid2">
+
+      <article class="card feature">
+        <div class="thumb"><!-- <img src="images/chamrad.png" alt="Chamraď"> -->obrázok</div>
+        <div class="body">
+          <h3>Chamraď</h3>
+          <p class="role">Herný kolektív · [doplň svoju rolu]</p>
+          <p class="result">Môj najväčší projekt: vlastné hry, merch a komunita okolo nich.</p>
+          <p>[Doplň 2 – 3 vety: kedy a ako kolektív vznikol, koľko vás je, čo robíš ty a čo robíte okrem hier.]</p>
+          <ul class="games">
+            <li><span>Sen z úst</span></li>
+            <li><span>Aj stenám horia uši</span> <!-- <a class="textlink" href="https://chamrad.itch.io/aj-stenam-horia-usi" target="_blank" rel="noopener">itch.io</a> --></li>
+          </ul>
+          <p style="margin-top:18px"><a class="textlink" href="https://chamrad.sk" target="_blank" rel="noopener">Web kolektívu</a></p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="thumb"><!-- <img src="images/fnurik.png" alt="FNURIK"> -->obrázok</div>
+        <div class="body">
+          <h3>FNURIK</h3>
+          <p class="role">Herný festival v Trnave · pomáhal som s organizáciou</p>
+          <p class="result">Festival lokálnych indie hier: katalóg 2026 má 30 hier, inštalácií a výmyslov.</p>
+          <p>[Doplň, čo si mal na starosti: komunikácia s vývojármi, sociálne siete, program, produkcia…]</p>
+          <a class="textlink" href="https://www.fnurik.sk/katalog.html" target="_blank" rel="noopener">fnurik.sk</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="thumb"><!-- <img src="images/cherry-tower.png" alt="Cherry Tower"> -->obrázok</div>
+        <div class="body">
+          <h3>Cherry Tower</h3>
+          <p class="role">Kompletný vývoj pre slovenskú firmu</p>
+          <p class="result">Vydaná na konzolových platformách.</p>
+          <p>[Doplň 1 – 2 vety: čo si robil, čo bolo najťažšie.]</p>
+          <!-- <a class="textlink" href="SEM_VLOZ_ODKAZ">Pozrieť hru</a> -->
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="thumb"><!-- <img src="images/sen-z-ust.png" alt="Sen z úst"> -->obrázok</div>
+        <div class="body">
+          <h3>Sen z úst</h3>
+          <p class="role">Chamraď · vizuálna stránka, shadery a 2D assety</p>
+          <p class="result">Nominácia na festivale Anifilm v kategórii Videohry.</p>
+          <p>[Doplň 1 – 2 vety: aký vizuálny štýl si vytváral a čo si sa pri tom naučil.]</p>
+          <a class="textlink" href="https://mmmyster.itch.io/sen-z-ust" target="_blank" rel="noopener">Pozrieť na itch.io</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="thumb"><!-- <img src="images/allergica.png" alt="Allergica"> -->obrázok</div>
+        <div class="body">
+          <h3>Allergica</h3>
+          <p class="role">Global Game Jam · [doplň svoju rolu]</p>
+          <p class="result">Víťaz európskeho kola, prezentovaná na festivale A Maze v Berlíne.</p>
+          <p>[Doplň 1 – 2 vety o hre a tvojej práci.]</p>
+          <a class="textlink" href="https://domi-kimli.itch.io/allergica" target="_blank" rel="noopener">Zahrať na itch.io</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="thumb"><!-- <img src="images/4most.png" alt="4MOST CREWM8"> -->obrázok</div>
+        <div class="body">
+          <h3>4MOST CREWM8</h3>
+          <p class="role">Tímová hra s ItsDerpy, Lesohorár a Uranium100 · [doplň svoju rolu]</p>
+          <p class="result">Vydaná pre Windows, macOS a Linux. Arkáda v PICO-8 pre štyroch hráčov.</p>
+          <p>[Doplň 1 – 2 vety o hre a tvojej práci.]</p>
+          <a class="textlink" href="https://pytonvrah.itch.io/4most" target="_blank" rel="noopener">Zahrať na itch.io</a>
+        </div>
+      </article>
+
+    </div>
+    <p class="more">Ďalšie menšie hry a game jam projekty nájdeš na <a class="textlink" href="https://pytonvrah.itch.io" target="_blank" rel="noopener">mojom itch.io</a>.</p>
+  </div>
+</section>
+
+<section id="plagaty">
+  <div class="wrap">
+    <div class="head">
+      <h2>Študentské kino a plagáty</h2>
+      <p>Na univerzite prevádzkujem študentské kino [doplň názov, ako často premietate, koľko ľudí chodí]. Nižšie je výber mojich plagátov.</p>
+    </div>
+    <div class="slider">
+      <!-- TODO: Každý plagát: odkomentuj <img> a napíš názov. Ďalší plagát pridáš skopírovaním celého bloku <figure class="poster">. -->
+      <div class="track" tabindex="0" aria-label="Plagáty, posúvaj do strán">
+        <figure class="poster">
+          <div class="pimg"><!-- <img src="images/plagat-1.jpg" alt="Plagát: [názov]"> -->plagát 1</div>
+          <figcaption>[Názov filmu alebo akcie]</figcaption>
+        </figure>
+        <figure class="poster">
+          <div class="pimg"><!-- <img src="images/plagat-2.jpg" alt="Plagát: [názov]"> -->plagát 2</div>
+          <figcaption>[Názov filmu alebo akcie]</figcaption>
+        </figure>
+        <figure class="poster">
+          <div class="pimg"><!-- <img src="images/plagat-3.jpg" alt="Plagát: [názov]"> -->plagát 3</div>
+          <figcaption>[Názov filmu alebo akcie]</figcaption>
+        </figure>
+        <figure class="poster">
+          <div class="pimg"><!-- <img src="images/plagat-4.jpg" alt="Plagát: [názov]"> -->plagát 4</div>
+          <figcaption>[Názov filmu alebo akcie]</figcaption>
+        </figure>
+        <figure class="poster">
+          <div class="pimg"><!-- <img src="images/plagat-5.jpg" alt="Plagát: [názov]"> -->plagát 5</div>
+          <figcaption>[Názov filmu alebo akcie]</figcaption>
+        </figure>
+      </div>
+      <div class="ctrl">
+        <button type="button" class="arrow" data-dir="-1" aria-label="Predchádzajúce plagáty">‹</button>
+        <button type="button" class="arrow" data-dir="1" aria-label="Ďalšie plagáty">›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="o-mne">
+  <div class="wrap about">
+    <div>
+      <h2>O mne</h2>
+      <p>Študujem Teóriu digitálnych hier na Univerzite sv. Cyrila a Metoda v Trnave. Hry robím od návrhu mechaník cez grafiku až po vydanie, sám aj v tíme.</p>
+      <p>Som súčasťou herného kolektívu Chamraď, pomáhal som organizovať herný festival FNURIK v Trnave a na univerzite prevádzkujem študentské kino, takže viem, ako to vyzerá, keď sa okolo hier a filmov zíde komunita.</p>
+      <p>Vo VR herni v Bratislave som pomáhal zákazníkom a riešil techniku, v gastre som sa naučil komunikovať pod tlakom. Ako freelancer pracujem na projektoch pre externých klientov.</p>
+      <p>Komunitný management ma láka, lebo chcem byť pri tom, keď hráči objavujú hru, a odovzdávať ich spätnú väzbu tímu.</p>
+    </div>
+    <div>
+      <h3>Nástroje</h3>
+      <ul class="chips">
+        <li>Unity</li><li>Godot</li><li>Pico-8</li><li>C# (základy)</li>
+        <li>Photoshop</li><li>Illustrator</li><li>Affinity</li><li>Aseprite</li><li>Procreate</li>
+        <li>Level design</li><li>Vizuálny štýl</li><li>Koordinácia tímu</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="contact">
+  <div class="wrap">
+    <div class="head" style="margin-bottom:36px">
+      <h2>Kontakt</h2>
+      <p>Napíš mi, rád sa porozprávam.</p>
+    </div>
+    <a class="big" href="mailto:kuttner.filip1@gmail.com">kuttner.filip1@gmail.com</a>
+    <ul>
+      <li><a class="textlink" href="https://pytonvrah.itch.io" target="_blank" rel="noopener">itch.io</a></li>
+      <li><a class="textlink" href="https://chamrad.sk" target="_blank" rel="noopener">Chamraď</a></li>
+      <li><a class="textlink" href="CV_Filip_Kuttner.pdf">Stiahnuť CV (PDF)</a></li>
+      <li>Bratislava</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="wrap">© 2026 Filip Kuttner</div></footer>
+
+<script>
+(function(){
+  var hero=document.querySelector('.hero'),stage=document.querySelector('.stage'),hole=document.querySelector('.hole'),
+      body=document.body,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,D=1,s0=.05,tick=false;
+  function size(){
+    var W=innerWidth,H=stage.clientHeight,cx=W/2,cy=H*.86;
+    var R=Math.hypot(Math.max(cx,W-cx),Math.max(cy,H-cy));
+    D=R*2*1.2;hole.style.width=hole.style.height=D+'px';s0=84/D;
+  }
+  function update(){
+    tick=false;
+    var rect=hero.getBoundingClientRect();
+    if(reduce){body.classList.toggle('on-light',rect.bottom>60);return;}
+    var H=stage.clientHeight,total=hero.offsetHeight-H;
+    var p=Math.min(Math.max(-rect.top/total,0),1);
+    var e=Math.pow(Math.min(p/.9,1),2.2),s=s0+(1-s0)*e;
+    stage.style.setProperty('--p',p.toFixed(4));
+    stage.style.setProperty('--s',s.toFixed(4));
+    var r=D/2*s*.88,cy=H*.86;
+    body.classList.toggle('on-light',!(cy-r<40));
+  }
+  function req(){if(!tick){tick=true;requestAnimationFrame(update);}}
+  addEventListener('scroll',req,{passive:true});
+  addEventListener('resize',function(){size();req();});
+  size();update();
+})();
+</script>
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,raf=0;
+  function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
+  function stop(){if(raf){cancelAnimationFrame(raf);raf=0}}
+  function go(y){
+    stop();
+    var from=scrollY,d=y-from;
+    if(reduce||Math.abs(d)<2){scrollTo(0,y);return}
+    var dur=Math.min(2600,1200+Math.min(Math.abs(d),4000)*.35),t0=null;
+    function step(t){
+      if(t0===null)t0=t;
+      var k=Math.min((t-t0)/dur,1);
+      scrollTo(0,from+d*ease(k));
+      raf=k<1?requestAnimationFrame(step):0;
+    }
+    raf=requestAnimationFrame(step);
+  }
+  ['wheel','touchstart','keydown','mousedown'].forEach(function(e){addEventListener(e,stop,{passive:true})});
+  document.querySelectorAll('[data-go]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var h=b.getAttribute('data-go'),el=document.getElementById(h);
+      if(el)go(h==='top'?0:el.getBoundingClientRect().top+scrollY);
+    });
+  });
+  var links=[].slice.call(document.querySelectorAll('nav button')),
+      secs=links.map(function(b){return document.getElementById(b.getAttribute('data-go'))});
+  function spy(){
+    var mid=innerHeight*.5,cur=-1;
+    secs.forEach(function(s,i){if(s.getBoundingClientRect().top<=mid)cur=i});
+    links.forEach(function(a,i){if(i===cur)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+  }
+  addEventListener('scroll',function(){requestAnimationFrame(spy)},{passive:true});
+  spy();
+})();
+</script>
+<script>
+(function(){
+  var track=document.querySelector('.track');if(!track)return;
+  var prev=document.querySelector('.arrow[data-dir="-1"]'),next=document.querySelector('.arrow[data-dir="1"]'),
+      reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function step(){var p=track.querySelector('.poster');return p?p.getBoundingClientRect().width+20:280}
+  function upd(){prev.disabled=track.scrollLeft<4;next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-4}
+  [prev,next].forEach(function(b){b.addEventListener('click',function(){
+    track.scrollBy({left:step()*(+b.getAttribute('data-dir')),behavior:reduce?'auto':'smooth'});
+  })});
+  track.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+})();
+</script>
 </body>
 </html>
