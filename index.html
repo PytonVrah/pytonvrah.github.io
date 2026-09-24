@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0B0B0B">
-<title>Filip Kuttner | Portfólio</title>
-<meta name="description" content="Portfólio Filipa Kuttnera: game design, 2D grafika a komunitný obsah.">
+<title>Filip Kuttner | Portfolio</title>
+<meta name="description" content="Portfolio of Filip Kuttner: game design and 2D art.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
@@ -82,7 +82,7 @@ section .wrap{width:100%}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:22px}
 .thumb{aspect-ratio:16/10;background:#050505;display:grid;place-items:center;color:var(--muted);font-size:.85rem;border-bottom:1px solid var(--line)}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.08);transition:filter .3s}
-.card:hover .thumb img{filter:none}
+@media (hover:hover){.card:hover .thumb img{filter:none}}
 .card .body{padding:28px}
 .card h3{font-size:2.3rem;margin-bottom:6px}
 .role{color:var(--muted);font-size:.95rem;margin-bottom:16px}
@@ -112,7 +112,7 @@ footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem
 .poster{flex:0 0 clamp(200px,26vw,280px);scroll-snap-align:start;margin:0}
 .pimg{aspect-ratio:1/1.414;background:#050505;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:grid;place-items:center;color:var(--muted);font-size:.85rem}
 .pimg img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.08);transition:filter .3s}
-.poster:hover .pimg img{filter:none}
+@media (hover:hover){.poster:hover .pimg img{filter:none}}
 .poster figcaption{margin-top:10px;color:var(--muted);font-size:.9rem}
 .ctrl{display:flex;justify-content:center;gap:12px;margin-top:28px}
 .arrow{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--panel);font-size:1.6rem;line-height:1;display:grid;place-items:center}
@@ -130,6 +130,27 @@ footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem
   html{scroll-behavior:auto}.thumb img{transition:none}
   .hero{height:auto}.stage{position:relative;height:auto;padding:120px 0 100px}.stage .content{padding:0 24px;opacity:1;transform:none}
   .hole,.cue{display:none}
+}
+
+button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.menu-btn{display:none;min-height:44px;padding:0 4px;font-weight:600;font-size:.95rem}
+@media (max-width:760px){
+  header.top{padding-top:env(safe-area-inset-top,0px)}
+  header.top .wrap{flex-wrap:nowrap;min-height:56px}
+  .menu-btn{display:block}
+  nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;padding:4px 24px 16px;background:rgba(11,11,11,.97);border-bottom:1px solid var(--line)}
+  .menu-open nav{display:flex}
+  nav button{width:100%;text-align:left;padding:14px 0;font-size:1.1rem;border-top:1px solid var(--line)}
+  nav button:first-child{border-top:0}
+  nav button[aria-current]{text-decoration:none;color:var(--ink)}
+  .on-light .menu-btn{color:#0B0B0B}
+  .on-light nav button{color:var(--muted)}
+  .on-light nav button[aria-current]{color:var(--ink)}
+  .menu-open header.top{background:rgba(11,11,11,.97);border-bottom-color:var(--line)}
+  .menu-open .logo,.menu-open .menu-btn{color:var(--ink)}
+  .poster{flex-basis:62vw}
+  .slot{padding:22px}
+  .card .body{padding:22px}
 }
 </style>
 </head>
@@ -155,12 +176,12 @@ footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem
 <header class="top">
   <div class="wrap">
     <button type="button" class="logo" data-go="top">Filip Kuttner</button>
-    <nav aria-label="Hlavná navigácia">
-      <button type="button" data-go="community">Community</button>
-      <button type="button" data-go="projekty">Projekty</button>
-      <button type="button" data-go="plagaty">Plagáty</button>
-      <button type="button" data-go="o-mne">O mne</button>
-      <button type="button" data-go="kontakt">Kontakt</button>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" aria-label="Main navigation">
+      <button type="button" data-go="projekty">Projects</button>
+      <button type="button" data-go="plagaty">Posters</button>
+      <button type="button" data-go="o-mne">About</button>
+      <button type="button" data-go="kontakt">Contact</button>
     </nav>
   </div>
 </header>
@@ -171,52 +192,23 @@ footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem
   <div class="stage">
     <div class="content">
       <h1>Filip<br>Kuttner</h1>
-      <p class="cap">Game design, 2D grafika a komunita</p>
-      <p class="lead">Navrhujem a kreslím hry a rád ich predstavujem ľuďom, ktorí ich budú hrať.</p>
+      <p class="cap">Game designer and 2D artist</p>
+      <p class="lead">I design and draw games, and I love getting them in front of the people who play them.</p>
       <div class="cta">
-        <button type="button" class="btn" data-go="community">Ukážka pre Way of the Hunter</button>
-        <button type="button" class="textlink" data-go="projekty">Moje projekty</button>
+        <button type="button" class="btn" data-go="projekty">See my work</button>
+        <button type="button" class="textlink" data-go="kontakt">Get in touch</button>
       </div>
     </div>
-    <span class="cue" aria-hidden="true">Posuň sa nižšie</span>
+    <span class="cue" aria-hidden="true">Scroll down</span>
     <div class="hole" aria-hidden="true"></div>
   </div>
 </div>
 
-<section id="community">
-  <div class="wrap">
-    <div class="head">
-      <h2>Komunita a obsah pre Way of the Hunter</h2>
-      <p>Ukážky toho, ako by som s hráčmi komunikoval a čo by som pre nich pripravoval.</p>
-    </div>
-    <!-- TODO: Každý slot nahraď vlastným obsahom. Obrázok: <img src="images/nazov.png" alt="popis">
-         Video: YouTube embed (Share → Embed). Potom odstráň text "Sem príde…". -->
-    <div class="bento">
-      <div class="slot a">
-        <h3>Príspevky na sociálne siete</h3>
-        <p>Sem príde 3 – 5 vzorových príspevkov: oznam o update, otázka pre komunitu, spotlight na hráča.</p>
-      </div>
-      <div class="slot b">
-        <h3>Krátke video</h3>
-        <p>Sem príde 15 – 30 sekundový reel alebo trailer edit.</p>
-      </div>
-      <div class="slot c">
-        <h3>Discord oznam</h3>
-        <p>Sem príde vzorový oznam, napríklad patch notes alebo komunitný event.</p>
-      </div>
-      <div class="slot d">
-        <h3>Content kalendár na 2 týždne</h3>
-        <p>Sem príde tabuľka alebo obrázok s plánom príspevkov.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="projekty">
   <div class="wrap">
     <div class="head">
-      <h2>Projekty</h2>
-      <p>Výber vecí, na ktorých som pracoval, s mojou rolou a výsledkom.</p>
+      <h2>Projects</h2>
+      <p>Selected work, with my role and the result.</p>
     </div>
     <div class="grid2">
 
@@ -224,14 +216,14 @@ footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem
         <div class="thumb"><img src="images/chamrad.png" alt="Chamraď" loading="lazy"></div>
         <div class="body">
           <h3>Chamraď</h3>
-          <p class="role">Herný kolektív · [doplň svoju rolu]</p>
-          <p class="result">Môj najväčší projekt: vlastné hry, merch a komunita okolo nich.</p>
-          <p>[Doplň 2 – 3 vety: kedy a ako kolektív vznikol, koľko vás je, čo robíš ty a čo robíte okrem hier.]</p>
+          <p class="role">Game collective · visuals, graphics and in-engine art</p>
+          <p class="result">My biggest project: our own games, merch and more.</p>
+          <p>Chamraď started from a spontaneous inner need to create. We are united by one intention: to make video games as authentic, raw, pieced-together art that goes beyond genre and expectations.</p>
           <ul class="games">
             <li><span>Sen z úst</span></li>
-            <li><span>Aj stenám horia uši</span> <!-- <a class="textlink" href="https://chamrad.itch.io/aj-stenam-horia-usi" target="_blank" rel="noopener">itch.io</a> --></li>
+            <li><span>Aj stenám horia uši</span> <span style="color:var(--muted)">Coming soon</span></li>
           </ul>
-          <p style="margin-top:18px"><a class="textlink" href="https://chamrad.sk" target="_blank" rel="noopener">Web kolektívu</a></p>
+          <p style="margin-top:18px"><a class="textlink" href="https://chamrad.sk" target="_blank" rel="noopener">Collective's website</a></p>
         </div>
       </article>
 
@@ -239,9 +231,9 @@ footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem
         <div class="thumb"><img src="images/fnurik.png" alt="FNURIK" loading="lazy"></div>
         <div class="body">
           <h3>FNURIK</h3>
-          <p class="role">Herný festival v Trnave · pomáhal som s organizáciou</p>
-          <p class="result">Festival lokálnych indie hier: katalóg 2026 má 30 hier, inštalácií a výmyslov.</p>
-          <p>[Doplň, čo si mal na starosti: komunikácia s vývojármi, sociálne siete, program, produkcia…]</p>
+          <p class="role">Game festival in Trnava · graphic designer and on-site help</p>
+          <p class="result">A festival of local indie games: the 2026 catalogue has 30 games, installations and experiments.</p>
+          <p>I designed promotional graphics, including the main festival poster, and helped on site with everything the festival needed.</p>
           <a class="textlink" href="https://www.fnurik.sk/katalog.html" target="_blank" rel="noopener">fnurik.sk</a>
         </div>
       </article>
@@ -250,10 +242,10 @@ footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem
         <div class="thumb"><img src="images/cherry-tower.png" alt="Cherry Tower" loading="lazy"></div>
         <div class="body">
           <h3>Cherry Tower</h3>
-          <p class="role">Kompletný vývoj pre slovenskú firmu</p>
-          <p class="result">Vydaná na konzolových platformách.</p>
-          <p>[Doplň 1 – 2 vety: čo si robil, čo bolo najťažšie.]</p>
-          <!-- <a class="textlink" href="SEM_VLOZ_ODKAZ">Pozrieť hru</a> -->
+          <p class="role">Solo development · my first game</p>
+          <p class="result">Published in December 2023 on PlayStation, Xbox and Nintendo Switch.</p>
+          <p>A 2D pixel platformer and the first game I ever made. I developed it on my own and sold it to Webnetic, who published it.</p>
+          <a class="textlink" href="https://webnetic.sk/en-US/games/cherry-tower" target="_blank" rel="noopener">View the game page</a>
         </div>
       </article>
 
@@ -261,10 +253,10 @@ footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem
         <div class="thumb"><img src="images/sen-z-ust.png" alt="Sen z úst" loading="lazy"></div>
         <div class="body">
           <h3>Sen z úst</h3>
-          <p class="role">Chamraď · vizuálna stránka, shadery a 2D assety</p>
-          <p class="result">Nominácia na festivale Anifilm v kategórii Videohry.</p>
-          <p>[Doplň 1 – 2 vety: aký vizuálny štýl si vytváral a čo si sa pri tom naučil.]</p>
-          <a class="textlink" href="https://mmmyster.itch.io/sen-z-ust" target="_blank" rel="noopener">Pozrieť na itch.io</a>
+          <p class="role">Chamraď · visuals, 3D art and clay assets</p>
+          <p class="result">Nominated at the Anifilm festival in the Video Games category.</p>
+          <p>I made the visuals and 3D art, and I sculpted all the clay objects and digitised them for the game.</p>
+          <a class="textlink" href="https://mmmyster.itch.io/sen-z-ust" target="_blank" rel="noopener">View on itch.io</a>
         </div>
       </article>
 
@@ -272,10 +264,10 @@ footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem
         <div class="thumb"><img src="images/allergica.png" alt="Allergica" loading="lazy"></div>
         <div class="body">
           <h3>Allergica</h3>
-          <p class="role">Global Game Jam · [doplň svoju rolu]</p>
-          <p class="result">Víťaz európskeho kola, prezentovaná na festivale A Maze v Berlíne.</p>
-          <p>[Doplň 1 – 2 vety o hre a tvojej práci.]</p>
-          <a class="textlink" href="https://domi-kimli.itch.io/allergica" target="_blank" rel="noopener">Zahrať na itch.io</a>
+          <p class="role">Game jam project · UI and graphics</p>
+          <p class="result">Won the European round and was presented at the A Maze festival in Berlin.</p>
+          <p>I made all the UI and GUI, plus a few smaller graphical details. We made it for Game Jam Plus, a large worldwide game jam.</p>
+          <a class="textlink" href="https://domi-kimli.itch.io/allergica" target="_blank" rel="noopener">Play on itch.io</a>
         </div>
       </article>
 
@@ -283,60 +275,60 @@ footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem
         <div class="thumb"><img src="images/4most.png" alt="4MOST CREWM8" loading="lazy"></div>
         <div class="body">
           <h3>4MOST CREWM8</h3>
-          <p class="role">Tímová hra s ItsDerpy, Lesohorár a Uranium100 · [doplň svoju rolu]</p>
-          <p class="result">Vydaná pre Windows, macOS a Linux. Arkáda v PICO-8 pre štyroch hráčov.</p>
-          <p>[Doplň 1 – 2 vety o hre a tvojej práci.]</p>
-          <a class="textlink" href="https://pytonvrah.itch.io/4most" target="_blank" rel="noopener">Zahrať na itch.io</a>
+          <p class="role">Game designer and scrum master · with ItsDerpy, Lesohorár and Uranium100</p>
+          <p class="result">Released for Windows, macOS and Linux.</p>
+          <p>A PICO-8 arcade game for four players, made as a university game jam project. We're now building a physical arcade cabinet for it.</p>
+          <a class="textlink" href="https://pytonvrah.itch.io/4most" target="_blank" rel="noopener">Play on itch.io</a>
         </div>
       </article>
 
     </div>
-    <p class="more">Ďalšie menšie hry a game jam projekty nájdeš na <a class="textlink" href="https://pytonvrah.itch.io" target="_blank" rel="noopener">mojom itch.io</a>.</p>
+    <p class="more">You can find more small games and game jam projects on <a class="textlink" href="https://pytonvrah.itch.io" target="_blank" rel="noopener">my itch.io</a>.</p>
   </div>
 </section>
 
 <section id="plagaty">
   <div class="wrap">
     <div class="head">
-      <h2>Študentské kino a plagáty</h2>
-      <p>Na univerzite prevádzkujem študentské kino [doplň názov, ako často premietate, koľko ľudí chodí]. Nižšie je výber mojich plagátov.</p>
+      <h2>Student cinema and posters</h2>
+      <p>Kino Ucho was my student project for two years: I ran the university cinema, organised the screenings and made the posters and advertising around school. Usually 15 – 20 people came. Below is a selection of my posters.</p>
     </div>
     <div class="slider">
-      <div class="track" tabindex="0" aria-label="Plagáty, posúvaj do strán">
+      <div class="track" tabindex="0" aria-label="Posters, swipe sideways">
         <figure class="poster">
-          <div class="pimg"><img src="images/plagat-1.jpg" alt="Plagát 1" loading="lazy"></div>
+          <div class="pimg"><img src="images/plagat-1.jpg" alt="Poster 1" loading="lazy"></div>
         </figure>
         <figure class="poster">
-          <div class="pimg"><img src="images/plagat-2.jpg" alt="Plagát 2" loading="lazy"></div>
+          <div class="pimg"><img src="images/plagat-2.jpg" alt="Poster 2" loading="lazy"></div>
         </figure>
         <figure class="poster">
-          <div class="pimg"><img src="images/plagat-3.jpg" alt="Plagát 3" loading="lazy"></div>
+          <div class="pimg"><img src="images/plagat-3.jpg" alt="Poster 3" loading="lazy"></div>
         </figure>
         <figure class="poster">
-          <div class="pimg"><img src="images/plagat-4.jpg" alt="Plagát 4" loading="lazy"></div>
+          <div class="pimg"><img src="images/plagat-4.jpg" alt="Poster 4" loading="lazy"></div>
         </figure>
         <figure class="poster">
-          <div class="pimg"><img src="images/plagat-5.jpg" alt="Plagát 5" loading="lazy"></div>
+          <div class="pimg"><img src="images/plagat-5.jpg" alt="Poster 5" loading="lazy"></div>
         </figure>
         <figure class="poster">
-          <div class="pimg"><img src="images/plagat-6.jpg" alt="Plagát 6" loading="lazy"></div>
+          <div class="pimg"><img src="images/plagat-6.jpg" alt="Poster 6" loading="lazy"></div>
         </figure>
         <figure class="poster">
-          <div class="pimg"><img src="images/plagat-7.jpg" alt="Plagát 7" loading="lazy"></div>
+          <div class="pimg"><img src="images/plagat-7.jpg" alt="Poster 7" loading="lazy"></div>
         </figure>
         <figure class="poster">
-          <div class="pimg"><img src="images/plagat-8.jpg" alt="Plagát 8" loading="lazy"></div>
+          <div class="pimg"><img src="images/plagat-8.jpg" alt="Poster 8" loading="lazy"></div>
         </figure>
         <figure class="poster">
-          <div class="pimg"><img src="images/plagat-9.jpg" alt="Plagát 9" loading="lazy"></div>
+          <div class="pimg"><img src="images/plagat-9.jpg" alt="Poster 9" loading="lazy"></div>
         </figure>
         <figure class="poster">
-          <div class="pimg"><img src="images/plagat-10.jpg" alt="Plagát 10" loading="lazy"></div>
+          <div class="pimg"><img src="images/plagat-10.jpg" alt="Poster 10" loading="lazy"></div>
         </figure>
       </div>
       <div class="ctrl">
-        <button type="button" class="arrow" data-dir="-1" aria-label="Predchádzajúce plagáty">‹</button>
-        <button type="button" class="arrow" data-dir="1" aria-label="Ďalšie plagáty">›</button>
+        <button type="button" class="arrow" data-dir="-1" aria-label="Previous posters">‹</button>
+        <button type="button" class="arrow" data-dir="1" aria-label="Next posters">›</button>
       </div>
     </div>
   </div>
@@ -345,18 +337,18 @@ footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem
 <section id="o-mne">
   <div class="wrap about">
     <div>
-      <h2>O mne</h2>
-      <p>Študujem Teóriu digitálnych hier na Univerzite sv. Cyrila a Metoda v Trnave. Hry robím od návrhu mechaník cez grafiku až po vydanie, sám aj v tíme.</p>
-      <p>Som súčasťou herného kolektívu Chamraď, pomáhal som organizovať herný festival FNURIK v Trnave a na univerzite prevádzkujem študentské kino, takže viem, ako to vyzerá, keď sa okolo hier a filmov zíde komunita.</p>
-      <p>Vo VR herni v Bratislave som pomáhal zákazníkom a riešil techniku, v gastre som sa naučil komunikovať pod tlakom. Ako freelancer pracujem na projektoch pre externých klientov.</p>
-      <p>Komunitný management ma láka, lebo chcem byť pri tom, keď hráči objavujú hru, a odovzdávať ich spätnú väzbu tímu.</p>
+      <h2>About me</h2>
+      <p>I study Digital Game Theory at the University of Ss. Cyril and Methodius in Trnava. I make games from mechanics and art to release, both on my own and in a team.</p>
+      <p>I'm part of the game collective Chamraď, helped organise the FNURIK game festival in Trnava, and ran the student cinema Kino Ucho at my university for two years. I know what it takes to bring people together around games and films.</p>
+      <p>I worked at a VR arcade in Bratislava, helping customers and handling tech support, and in hospitality I learned to communicate under pressure. As a freelancer I take on game and art projects for external clients.</p>
+      <p>Community management appeals to me because I want to be there when players discover a game and bring their feedback back to the team.</p>
     </div>
     <div>
-      <h3>Nástroje</h3>
+      <h3>Tools</h3>
       <ul class="chips">
-        <li>Unity</li><li>Godot</li><li>Pico-8</li><li>C# (základy)</li>
+        <li>Unity</li><li>Godot</li><li>Pico-8</li><li>C# (basics)</li>
         <li>Photoshop</li><li>Illustrator</li><li>Affinity</li><li>Aseprite</li><li>Procreate</li>
-        <li>Level design</li><li>Vizuálny štýl</li><li>Koordinácia tímu</li>
+        <li>Level design</li><li>Visual style</li><li>Team coordination</li>
       </ul>
     </div>
   </div>
@@ -365,14 +357,13 @@ footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem
 <section id="kontakt" class="contact">
   <div class="wrap">
     <div class="head" style="margin-bottom:36px">
-      <h2>Kontakt</h2>
-      <p>Napíš mi, rád sa porozprávam.</p>
+      <h2>Contact</h2>
+      <p>Write to me, I'm happy to talk.</p>
     </div>
     <a class="big" href="mailto:kuttner.filip1@gmail.com">kuttner.filip1@gmail.com</a>
     <ul>
       <li><a class="textlink" href="https://pytonvrah.itch.io" target="_blank" rel="noopener">itch.io</a></li>
       <li><a class="textlink" href="https://chamrad.sk" target="_blank" rel="noopener">Chamraď</a></li>
-      <li><a class="textlink" href="CV_Filip_Kuttner.pdf">Stiahnuť CV (PDF)</a></li>
       <li>Bratislava</li>
     </ul>
   </div>
@@ -456,6 +447,16 @@ footer{padding:32px 0 44px;text-align:center;color:var(--muted);font-size:.85rem
     track.scrollBy({left:step()*(+b.getAttribute('data-dir')),behavior:reduce?'auto':'smooth'});
   })});
   track.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+})();
+</script>
+<script>
+(function(){
+  var mb=document.querySelector('.menu-btn');if(!mb)return;
+  function setMenu(o){document.body.classList.toggle('menu-open',o);mb.setAttribute('aria-expanded',o);mb.textContent=o?'Close':'Menu';}
+  mb.addEventListener('click',function(){setMenu(!document.body.classList.contains('menu-open'));});
+  document.querySelectorAll('nav button').forEach(function(b){b.addEventListener('click',function(){setMenu(false);});});
+  addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false);});
+  addEventListener('resize',function(){if(innerWidth>760)setMenu(false);});
 })();
 </script>
 </body>
