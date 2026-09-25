@@ -7,25 +7,39 @@
 <meta name="theme-color" content="#0B0B0B">
 <title>Filip Kuttner | Portfolio</title>
 <meta name="description" content="Portfolio of Filip Kuttner: game design and 2D art.">
+
+<!-- Link preview (what shows when the site is shared, e.g. in Messages, Discord, Slack) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Filip Kuttner | Portfolio">
+<meta property="og:description" content="Game designer and 2D artist. Selected work, community projects and posters.">
+<meta property="og:image" content="https://pytonvrah.github.io/images/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://pytonvrah.github.io">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Filip Kuttner | Portfolio">
+<meta name="twitter:description" content="Game designer and 2D artist. Selected work, community projects and posters.">
+<meta name="twitter:image" content="https://pytonvrah.github.io/images/og-cover.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Pirata+One&display=swap" rel="stylesheet">
 <style>
 :root{
   color-scheme:dark;
   --bg:#0B0B0B; --panel:#121212; --line:rgba(236,234,228,.16);
   --ink:#ECEAE4; --soft:#C9C6BF; --muted:#8F8D88; --on-ink:#0B0B0B;
-  --display:"UnifrakturCook","Old English Text MT",Georgia,serif;
+  --display:"UnifrakturCook","Pirata One","Old English Text MT",Georgia,serif;
   --body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
 }
 *{box-sizing:border-box}
+html{font-synthesis:none}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
 main,footer{position:relative;z-index:1}
 a{color:inherit}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;-webkit-appearance:none;appearance:none}
 a:focus-visible,button:focus-visible,.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-h1,h2,h3{font-family:var(--display);font-weight:700;margin:0;line-height:1.02}
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0;line-height:1.02;font-feature-settings:"ss07" 1,"ss03" 1;font-variant-alternates:stylistic(ss07);}
 h1,h2{filter:url(#ink)}
 h2{filter:url(#ink2)}
 p{margin:0 0 1em}
@@ -84,7 +98,7 @@ section .wrap{width:100%}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.08);transition:filter .3s}
 @media (hover:hover){.card:hover .thumb img{filter:none}}
 .card .body{padding:28px}
-.card h3{font-size:2.3rem;margin-bottom:6px}
+.card h3{font-family:var(--body);font-weight:700;font-size:1.7rem;letter-spacing:-.01em;margin-bottom:6px}
 .role{color:var(--muted);font-size:.95rem;margin-bottom:16px}
 .result{display:flex;gap:10px;font-weight:600;margin-bottom:14px}
 .result::before{content:"";flex:none;width:8px;height:8px;margin-top:.55em;background:var(--ink);transform:rotate(45deg)}
